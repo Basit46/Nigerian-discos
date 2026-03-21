@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "vercel-install": "npm install --legacy-peer-deps"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.21",
