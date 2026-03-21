@@ -33,7 +33,7 @@ const Content = ({ children }: { children: React.ReactNode }) => {
   }, [discos]);
 
   return (
-    <div className="h-fit lg:h-dvh w-full p-5 flex flex-col lg:flex-row gap-3">
+    <div className="h-fit lg:h-dvh w-full p-4 md:p-5 flex flex-col lg:flex-row gap-3">
       {children}
 
       <div className="scrollbar-hide flex-1 overflow-auto ">
