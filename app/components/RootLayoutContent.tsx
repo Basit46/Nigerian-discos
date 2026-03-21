@@ -33,10 +33,10 @@ const Content = ({ children }: { children: React.ReactNode }) => {
   }, [discos]);
 
   return (
-    <div className="h-dvh w-full p-5 flex gap-3">
+    <div className="h-fit lg:h-dvh w-full p-5 flex flex-col lg:flex-row gap-3">
       {children}
 
-      <div className="scrollbar-hide flex-1 overflow-y-auto ">
+      <div className="scrollbar-hide flex-1 overflow-auto ">
         <MapView data={discos.slice(0, -1)} zones={zones as any} />
       </div>
     </div>
