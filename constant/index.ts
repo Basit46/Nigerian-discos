@@ -166,3 +166,17 @@ export const discoDetail = [
     ],
   },
 ];
+
+export const discosList = [
+  "Abuja Disco",
+  "Benin Disco",
+  "Eko Disco",
+  "Enugu Disco",
+  "Ibadan Disco",
+  "Ikeja Disco",
+  "Jos Disco",
+  "Kaduna Disco",
+  "Kano Disco",
+  "PHarcourt Disco",
+  "Yola Disco",
+];
