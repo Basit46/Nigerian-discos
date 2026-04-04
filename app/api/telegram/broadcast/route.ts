@@ -7,6 +7,7 @@ export async function GET() {
   try {
     await connectDB();
 
+    //Get all users to broadcast too
     const users = await User.find({ disco: { $exists: true } });
 
     const batchSize = 20;
