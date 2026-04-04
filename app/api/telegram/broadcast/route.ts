@@ -9,7 +9,7 @@ export async function GET() {
 
     const users = await User.find({ disco: { $exists: true } });
 
-    const batchSize = 20; // avoid rate limits
+    const batchSize = 20;
     for (let i = 0; i < users.length; i += batchSize) {
       const batch = users.slice(i, i + batchSize);
       await Promise.all(
