@@ -36,12 +36,7 @@ export const sendMessage = async ({
 };
 
 export const getDisco = async (discoId: string) => {
-  const baseUrl =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : `https://${process.env.VERCEL_URL}`;
-
-  const res = await axios.get(`${baseUrl}/api`);
+  const res = await axios.get(`https://nigerian-discos.vercel.app/api`);
   return (res.data as Disco[]).find(
     (d) => d.discoName.toLowerCase() === discoId.toLowerCase(),
   );
