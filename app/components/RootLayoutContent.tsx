@@ -5,12 +5,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useMemo } from "react";
 import MapView from "./MapView";
 import { useGetDiscos } from "@/lib/queries";
+import { Analytics } from "@vercel/analytics/next";
 
 const RootLayoutContent = ({ children }: { children: React.ReactNode }) => {
   const [queryClient] = useState(() => new QueryClient());
 
   return (
     <QueryClientProvider client={queryClient}>
+      <Analytics />
       <Content children={children} />
     </QueryClientProvider>
   );
