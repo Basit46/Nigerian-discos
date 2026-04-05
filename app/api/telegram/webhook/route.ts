@@ -140,6 +140,8 @@ Got issues or feature ideas? I'd love to hear from you.
 Thanks 🙌
 `,
       });
+
+      return NextResponse.json({ ok: true });
     }
 
     await sendMessage({
