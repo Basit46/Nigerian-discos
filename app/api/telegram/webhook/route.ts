@@ -111,6 +111,13 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ ok: true });
       }
 
+      if (!user.disco) {
+        await sendMessage({
+          chatId,
+          text: "Please select your disco first using /disco.",
+        });
+        return NextResponse.json({ ok: true });
+      }
       const disco = await getDisco(user.disco);
       await sendMessage({
         chatId,
@@ -118,6 +125,21 @@ export async function POST(req: NextRequest) {
       });
 
       return NextResponse.json({ ok: true });
+    }
+
+    if (text === "/support") {
+      await sendMessage({
+        chatId,
+        text: `
+🛠 *Support & Feedback*
+
+Got issues or feature ideas? I'd love to hear from you.
+
+📧 Email: hassanbasitope@gmail.com
+
+Thanks 🙌
+`,
+      });
     }
 
     await sendMessage({

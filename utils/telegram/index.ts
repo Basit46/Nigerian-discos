@@ -41,3 +41,15 @@ export const getDisco = async (discoId: string) => {
     (d) => d.discoName.toLowerCase() === discoId.toLowerCase(),
   );
 };
+
+export const formatLowLoadMessage = (disco: string, load: number) => `
+🚨 *Low Power Alert*
+
+📍 Disco: *${disco}*
+⚡ Current Load: *${load} MW*
+
+⚠️ Load has dropped below normal levels. 
+Expect possible outages or reduced supply.
+
+Stay prepared.
+`;
