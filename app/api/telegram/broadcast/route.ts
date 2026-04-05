@@ -19,16 +19,45 @@ export async function GET() {
         batch.map(async (user) => {
           try {
             const disco = await getDisco(user.disco);
-
             if (!disco || !disco.load) return;
 
             const load = parseFloat(disco.load);
+            const isLow = load < LOW_THRESHOLD;
 
-            if (load < LOW_THRESHOLD) {
+            // Low Alert
+            if (isLow && !user.lastIsLow) {
               await sendMessage({
                 chatId: user.chatId,
-                text: formatLowLoadMessage(user.disco, load),
+                text: `
+🚨 *Low Power Alert*
+
+📍 ${user.disco}
+⚡ Load: *${load} MW*
+
+Power supply may be unstable.
+`,
               });
+
+              user.lastIsLow = true;
+              await user.save();
+            }
+
+            // Recovery Alert
+            if (!isLow && user.lastIsLow) {
+              await sendMessage({
+                chatId: user.chatId,
+                text: `
+✅ *Power Recovery*
+
+📍 ${user.disco}
+⚡ Load: *${load} MW*
+
+Supply is getting stable now.
+`,
+              });
+
+              user.lastIsLow = false;
+              await user.save();
             }
           } catch (err) {
             console.error("Failed to send to user:", user.chatId, err);

@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema(
       enum: ["SELECT_DISCO", "COMPLETED"],
       default: "SELECT_DISCO",
     },
+    lastIsLow: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,
