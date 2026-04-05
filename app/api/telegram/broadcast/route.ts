@@ -10,7 +10,7 @@ export async function GET() {
     const users = await User.find({ disco: { $exists: true } });
 
     const batchSize = 20;
-    const LOW_THRESHOLD = 50;
+    const LOW_THRESHOLD = 1000;
 
     for (let i = 0; i < users.length; i += batchSize) {
       const batch = users.slice(i, i + batchSize);
