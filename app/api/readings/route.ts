@@ -17,14 +17,14 @@ export async function GET() {
 
     const discoReadings = discos.map((d) => ({
       disco: d.discoName,
-      loadMw: parseFloat(d.load) || 0,
+      loadMw: Math.round(parseFloat(d.load.replace(/,/g, "")) * 100) / 100 || 0,
       version: 1,
       fetchedAt: now,
     }));
 
     const gencoReadings = gencos.map((g) => ({
       genco: g.gencoName,
-      loadMw: parseFloat(g.load) || 0,
+      loadMw: Math.round(parseFloat(g.load.replace(/,/g, "")) * 100) / 100 || 0,
       version: 1,
       fetchedAt: now,
     }));

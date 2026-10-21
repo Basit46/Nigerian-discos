@@ -25,6 +25,8 @@ export async function fetchDiscos(): Promise<ScrapedDisco[]> {
       const discoName = $(tds[0]).text().trim();
       const load = $(tds[1]).text().trim();
 
+      if (/^(total|summary|grand total)/i.test(discoName)) return null;
+
       const disco = discoDetail.find(
         (d) => d.disco.toLowerCase() === discoName.toLowerCase(),
       );
@@ -59,6 +61,8 @@ export async function fetchGencos(): Promise<ScrapedGenco[]> {
 
       const gencoName = $(cols[1]).text().trim();
       const load = $(cols[2]).text().trim();
+
+      if (/^(total|summary|grand total)/i.test(gencoName)) return null;
 
       return { gencoName, load };
     })
