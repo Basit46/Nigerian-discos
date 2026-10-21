@@ -3,7 +3,7 @@ import { connectDB } from "@/lib/db";
 import Reading from "@/lib/models/Reading";
 import { fetchDiscos } from "@/lib/scraper";
 
-export async function POST() {
+export async function GET() {
   try {
     await connectDB();
 
