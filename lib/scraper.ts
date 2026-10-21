@@ -6,6 +6,11 @@ export type ScrapedDisco = {
   load: string;
 };
 
+export type ScrapedGenco = {
+  gencoName: string;
+  load: string;
+};
+
 export async function fetchDiscos(): Promise<ScrapedDisco[]> {
   const res = await fetch("https://www.niggrid.org/DisCoLoadProfile");
   const html = await res.text();
@@ -35,4 +40,30 @@ export async function fetchDiscos(): Promise<ScrapedDisco[]> {
     .filter(Boolean);
 
   return data as ScrapedDisco[];
+}
+
+export async function fetchGencos(): Promise<ScrapedGenco[]> {
+  const res = await fetch("https://www.niggrid.org/Analytics/GENCOGenerationPerformances");
+  const html = await res.text();
+
+  const $ = cheerio.load(html);
+
+  const data = $("#MainContent_dlstRealtimeGen tbody tr td")
+    .map((_, td) => {
+      const $td = $(td);
+      const row = $td.find(".row");
+      if (row.length === 0) return null;
+
+      const cols = row.children("div");
+      if (cols.length < 3) return null;
+
+      const gencoName = $(cols[1]).text().trim();
+      const load = $(cols[2]).text().trim();
+
+      return { gencoName, load };
+    })
+    .get()
+    .filter(Boolean);
+
+  return data as ScrapedGenco[];
 }
