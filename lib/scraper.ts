@@ -43,7 +43,7 @@ export async function fetchDiscos(): Promise<ScrapedDisco[]> {
 }
 
 export async function fetchGencos(): Promise<ScrapedGenco[]> {
-  const res = await fetch("https://www.niggrid.org/Analytics/GENCOGenerationPerformances");
+  const res = await fetch("https://www.niggrid.org/Dashboard");
   const html = await res.text();
 
   const $ = cheerio.load(html);
