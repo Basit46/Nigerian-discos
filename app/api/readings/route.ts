@@ -17,15 +17,15 @@ export async function GET() {
 
     const discoReadings = discos.map((d) => ({
       disco: d.discoName,
-      slot: now,
       loadMw: parseFloat(d.load) || 0,
+      version: 1,
       fetchedAt: now,
     }));
 
     const gencoReadings = gencos.map((g) => ({
       genco: g.gencoName,
-      slot: now,
       loadMw: parseFloat(g.load) || 0,
+      version: 1,
       fetchedAt: now,
     }));
 

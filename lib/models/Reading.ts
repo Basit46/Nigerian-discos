@@ -7,13 +7,14 @@ const readingSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    slot: {
-      type: Date,
-      required: true,
-    },
     loadMw: {
       type: Number,
       required: true,
+    },
+    version: {
+      type: Number,
+      required: true,
+      default: 1,
     },
     fetchedAt: {
       type: Date,
